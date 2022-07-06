@@ -1,0 +1,60 @@
+<!doctype html>
+<html prefix="og: http://ogp.me/ns#" lang="en">
+<head>
+  <title>{{ title }}</title>
+  <meta charset="utf-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover'>
+  <meta name="description" content="">
+  <link rel="canonical" href="{{ url }}">
+  <script defer data-domain="one.fserb.com" src="https://metaphora.co/plausible.js"></script>
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Press to play!">
+  <meta property="og:url" content="{{ url }}">
+  <meta property="og:image" content="{{ ogimage }}">
+  <meta name="twitter:card" content="player">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="Press to play!">
+  <meta name="twitter:url" content="{{ url }}">
+  <meta name="twitter:site" content="@fserb">
+  <meta name="twitter:creator" content="@fserb">
+  <meta name="twitter:image" content="{{ twitterimage }}">
+  <meta name="twitter:player" content="{{ url }}">
+  <meta name="twitter:player:width" content="480" />
+  <meta name="twitter:player:height" content="480" />
+  <meta name="theme-color" content="{{ themecolor }}">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <meta name="apple-mobile-web-app-title" content="{{ title }}">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  {{ head | safe }}
+  <style>
+#canvas {
+  width: 100vmin;
+  height: 100vmin;
+  cursor: pointer;
+  user-select: none;
+}
+body {
+  margin: 0;
+  font-size: 0;
+  touch-action: none;
+  text-align: center;
+  background-color: #222;
+  background-color: {{ themecolor }};
+}
+  </style>
+</head>
+<body><canvas id="canvas"></canvas>
+{{ payload | safe }}{% set unpayload %}
+<script type="module">
+import main from "./src/rope.js";
+
+// main({forceStart: true});
+main();
+</script>
+{% endset %}
+</body>
+</html>
